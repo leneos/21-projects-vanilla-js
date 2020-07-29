@@ -58,3 +58,34 @@ button,
 input {
   cursor: pointer;
 }
+.songs-container {
+  display: grid;
+
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap: 20px;
+}
+
+.song {
+  width: 200px;
+  height: 200px;
+  border-radius: 10px;
+
+  padding: 10px 10px;
+  background-repeat: no-repeat;
+  background-size: cover;
+  box-shadow: 4px 4px 36px -12px rgba(0, 0, 0, 0.75);
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+.song h3 {
+  font-size: 18px;
+  margin: 0;
+  color: red;
+}
+.song p {
+  font-size: 12px;
+  margin: 0;
+  color: red;
+}
