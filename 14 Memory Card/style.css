@@ -1,0 +1,70 @@
+@import url("https://fonts.googleapis.com/css?family=Lato");
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #ffefea;
+  font-family: "Lato", sans-serif;
+  height: 100vh;
+  margin: 0;
+  display: flex;
+  margin: 0;
+  padding: 0 40px;
+}
+.container {
+  width: 100%;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.name-and-addbutton {
+  display: flex;
+  align-items: center;
+}
+.add-card-button {
+  display: block;
+}
+.cards {
+  height: 200px;
+  width: 300px;
+
+  position: relative;
+}
+.card {
+  display: flex;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  height: 179px;
+  width: 100%;
+  background-color: #fff;
+}
+.cards button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
+.cards-navigation {
+  display: none;
+  align-items: center;
+}
+.cards-navigation p {
+  margin: 0;
+}
+.clear-btn {
+  position: fixed;
+  bottom: 40px;
+  left: 40px;
+}
+.nav-btn {
+  cursor: pointer;
+}
+.cards-navigation.show {
+  display: flex;
+}
+.card {
+  cursor: pointer;
+}
