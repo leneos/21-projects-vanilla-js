@@ -33,13 +33,10 @@ const createSongBox = (item) => {
 };
 
 const updateDOM = (data) => {
-  if (songsContainer.innerHTML === ``) {
-    data.forEach((data) => {
-      createSongBox(data);
-    });
-  } else {
-    createSongBox(data);
-  }
+  songsContainer.innerHTML = ``;
+  data.forEach((item) => {
+    createSongBox(item);
+  });
 };
 const getData = () => {
   fetch(`https://api.lyrics.ovh/suggest/${input.value}`)
@@ -53,8 +50,8 @@ const getData = () => {
 form.addEventListener("submit", (e) => {
   e.preventDefault();
   if (input.value.trim() !== "") {
-    songsContainer.style.display = "grid";
     getData();
+    songsContainer.style.display = "grid";
     input.value = "";
   }
 });
