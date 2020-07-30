@@ -1,62 +1,81 @@
-const input = document.getElementById("input");
-const button = document.getElementById("search-btn");
-const songsContainer = document.querySelector(".songs-container");
+const form = document.getElementById("form");
+const search = document.getElementById("search");
+const result = document.getElementById("result");
+const more = document.getElementById("more");
 
-async function getLyrics(artist, song) {
-  const res = await fetch(`https://api.lyrics.ovh/v1/${artist}/${song}`);
+const apiURL = "https://api.lyrics.ovh";
+
+const getLyrics = async (artist, songTitle) => {
+  const res = await fetch(`${apiURL}/v1/${artist}/${songTitle}`);
   const data = await res.json();
 
-  songsContainer.style.display = "block";
-  songsContainer.innerHTML = `
-  <h2>${song} by ${artist}</h2>
-  <p>${data.lyrics.replace(/(\r\n|\r|\n)/g, "<br>")}</>`;
-}
+  const lyrics = data.lyrics.replace(/(\r\n|\r|\n)/g, "<br>");
 
-const createSongBox = (item) => {
-  console.log(item);
-  const songBox = document.createElement("div");
-  songBox.classList.add("song");
+  result.innerHTML = `<h2><strong>${artist}</strong> - ${songTitle}</h2>
+	<span>${lyrics}</span>`;
 
-  songBox.innerHTML = `
-    <h3>${item.title}</h3>
-    <p>${item.artist.name}</p>
-  `;
-  if (item.album.cover_big !== "") {
-    songBox.style.backgroundImage = `url(${item.album.cover_big})`;
-  } else {
-    songBox.style.backgroundColor = lightpink;
+  more.innerHTML = "";
+};
+const getMoreSongs = async (url) => {
+  const res = await fetch(`https://cors-anywhere.herokuapp.com/${url}`);
+  const data = await res.json();
+  showData(data);
+};
+
+const showData = (data) => {
+  result.innerHTML = `
+		<ul class="songs">
+			${data.data
+        .map(
+          (song) =>
+            `<li>
+					<span><strong>${song.artist.name}</strong> - ${song.title}</span>
+					<button class="btn" data-artist="${song.artist.name}" data-songtitle="${song.title}">Get Lyrics</button>
+				</li>`
+        )
+        .join("")}
+</ul>
+`;
+  if (data.prev || data.next) {
+    more.innerHTML = `
+	${
+    data.prev
+      ? `<button class="btn" onclick="getMoreSongs('${data.prev}')">Prev</button>`
+      : ``
   }
-  songBox.addEventListener("click", () => {
-    console.log(item.title);
-    console.log(item.artist.name);
-    getLyrics(item.artist.name, item.title);
-  });
-  songsContainer.appendChild(songBox);
-};
-
-const updateDOM = (data) => {
-  if (songsContainer.innerHTML === ``) {
-    data.forEach((data) => {
-      console.log(data.title);
-      createSongBox(data);
-    });
+	${
+    data.next
+      ? `<button class="btn" onclick="getMoreSongs('${data.next}')">Next</button>`
+      : ``
+  }
+	`;
   } else {
-    createSongBox(data);
+    more.innerHTML = "";
   }
 };
-const getData = () => {
-  fetch(`https://api.lyrics.ovh/suggest/${input.value}`)
-    .then((res) => res.json())
-    .then((data) => {
-      updateDOM(data.data);
-    });
+
+const searchSongs = async (term) => {
+  const res = await fetch(`${apiURL}/suggest/${term}`);
+  const data = await res.json();
+
+  showData(data);
 };
 
-button.addEventListener("click", (e) => {
+form.addEventListener("submit", (e) => {
   e.preventDefault();
-  if (input.value !== "") {
-    songsContainer.style.display = "grid";
-    getData();
-    input.value = "";
+  const searchTerm = search.value.trim();
+  if (!searchTerm) {
+    alert("Please type in a search term");
+  } else {
+    searchSongs(searchTerm);
+  }
+});
+
+result.addEventListener("click", (e) => {
+  const clickedEl = e.target;
+  if (clickedEl.tagName === "BUTTON") {
+    const artist = clickedEl.getAttribute("data-artist");
+    const songTitle = clickedEl.getAttribute("data-songtitle");
+    getLyrics(artist, songTitle);
   }
 });
