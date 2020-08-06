@@ -3,24 +3,21 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Lyrics App</title>
+    <title>Lyrics Search</title>
     <link rel="stylesheet" href="style.css" />
     <script defer src="./script.js"></script>
   </head>
   <body>
-    <div class="container">
-      <header>
-        <h1>Lyrics search</h1>
-        <form id="form">
-          <input type="text" id="input" class="input" />
-          <button id="search-btn">Search</button>
-        </form>
-      </header>
-      <main>
-        <p>Results will be displayed here</p>
-        <div class="songs-container"></div>
-      </main>
+    <header>
+      <h1>Lyrics Search</h1>
+      <form id="form">
+        <input type="text" id="search" placeholder="Enter artist or song..." />
+        <button>search</button>
+      </form>
+    </header>
+    <div id="result" class="container">
+      <p>Results will be displayed here</p>
     </div>
-    <button id="btnbtn">showlyrics</button>
+    <div id="more" class="container centered"></div>
   </body>
 </html>
