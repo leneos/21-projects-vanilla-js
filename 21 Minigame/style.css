@@ -1,0 +1,43 @@
+* {
+  box-sizing: border-box;
+}
+body {
+  height: 100vh;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-family: "Roboto";
+  text-align: center;
+  background-color: lightcyan;
+}
+.game-wrapper {
+  background-color: #fff;
+  padding: 40px 80px;
+  position: relative;
+}
+
+.game {
+  width: 400px;
+  height: 400px;
+  background-color: lavender;
+  margin: 20px 0;
+  position: relative;
+}
+h1 {
+  margin: 0 0 20px 0;
+}
+.start-btn {
+  font-size: 20px;
+  border: none;
+  outline: 0;
+  padding: 20px 40px;
+  border-radius: 20px;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%);
+  cursor: pointer;
+  background-color: lightsalmon;
+}

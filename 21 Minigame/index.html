@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="wrapper">
+      <div class="game-wrapper">
+        <button style="z-index: 999;" class="start-btn" id="start-btn">
+          Начать игру
+        </button>
+        <div class="timer">
+          <h1>Время игры: <span id="timer"></span></h1>
+        </div>
+        <div class="score">
+          <span id="score">0</span>
+        </div>
+        <div class="game" id="game"></div>
+        <div class="timer-wrapper" id="timer-wrapper">
+          <label for="input">Время игры (сек.)</label>
+          <input min="1" value="2" type="number" name="input" />
+        </div>
+      </div>
+    </div>
+
+    <script src="./script.js"></script>
+  </body>
+</html>
