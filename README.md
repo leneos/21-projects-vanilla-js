@@ -5,7 +5,7 @@ These are some projects i have made to improve my vanilla js skills.
 3. Chrome video player API testing
 4. Exchange rates app that fetches data from https://www.exchangerate-api.com
 5. A little app that fetches data from https://randomuser.me/api
-6. 
+6. Small portflio website
 7. Hangman game
 8. A food recipes site that fetches data from https://www.themealdb.com
 9. Expense tracker with income and expenses tracking
